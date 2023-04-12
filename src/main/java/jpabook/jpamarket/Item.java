@@ -3,6 +3,7 @@ package jpabook.jpamarket;
 
 import jakarta.persistence.*;
 
+import jpabook.jpamarket.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @DiscriminatorColumn(name = "dtype")
 @Getter @Setter
 public abstract class Item {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Long id;
 
@@ -24,4 +25,15 @@ public abstract class Item {
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
+
+    public void addStock(int quantity) {
+        this.stockQuantity+=quantity;
+    }
+    public void removeStock(int quantity) {
+        int restStock = this.stockQuantity - quantity;
+        if (restStock < 0 ){
+            throw new NotEnoughStockException("need more stock");
+        }
+        this.stockQuantity = restStock;
+    }
 }
