@@ -11,8 +11,11 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-
+  thymeleaf:
+    prefix: classpath:/tamplates/
+    suffix: .html
 logging.level:
   org.hibernate.SQL: debug
+
  # org.springframework: debug
 #  org.hibernate.type: trace
