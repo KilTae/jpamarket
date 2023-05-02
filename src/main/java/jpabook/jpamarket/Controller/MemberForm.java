@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberForm {
 
-    @NotEmpty(message = "회원 이름은 필수")
+  //  @NotEmpty(message = "회원 이름은 필수")
     private String name;
+
     private String city;
     private String street;
     private String zipcode;
