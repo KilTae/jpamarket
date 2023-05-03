@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jpabook.jpamarket.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,4 +32,8 @@ public class MemberRepository {
                 .setParameter("name", name)
                 .getResultList();
     }
+
+  /*  public interface MemberRepository extends JpaRepository<Member, Long> {
+        List<Member> findBtName(String name);
+    }*/
 }
